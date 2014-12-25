@@ -8,31 +8,31 @@ import (
 //	TO-DO:	Eingabe prüfen
 //	TO-DO:	Fehler Abfangen
 
-func main() {
-	char := "."
-	xValue, yValue := getUserInputFor_X_Y_Values()
-	drawRectangel(xValue, yValue, char)
-	fmt.Println("Der Flächeninhalt beträgt ", calculateRectangleVolume(xValue, yValue))
+type rectangel struct {
+	x, y int
 }
 
-func drawRectangel(x, y int, char string) {
+func main() {
+
+	rect := new(rectangel)
+
+	fmt.Println("Bitte geben Sie Breite und Länge ein:")
+	fmt.Scanf("%d %d", &rect.x, &rect.y)
+
+	drawRectangel(rect.x, rect.y)
+	fmt.Println("Der Flächeninhalt beträgt ", calculateRectangleVolume(rect.x, rect.y))
+}
+
+func drawRectangel(x, y int) {
 	for i := 1; i < x; i++ {
 
 		for i := 1; i < y; i++ {
-			fmt.Print(char)
+			fmt.Print("-")
 		}
-		fmt.Println(char)
+		fmt.Println("-")
 	}
 }
 
 func calculateRectangleVolume(x, y int) int {
 	return x * y
-}
-
-func getUserInputFor_X_Y_Values() (int, int) {
-	xInput := 0
-	yInput := 0
-	fmt.Println("Bitte geben Sie Länge und Breite ein:")
-	fmt.Scanf("%d %d", &xInput, &yInput)
-	return xInput, yInput
 }
